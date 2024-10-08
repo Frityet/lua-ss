@@ -1,0 +1,28 @@
+{
+    "workspace.library": [
+        "${addons}/love2d/module/library"
+    ],
+    "runtime.version": "LuaJIT",
+    "runtime.special": {
+        "love.filesystem.load": "loadfile"
+    },
+    "workspace.checkThirdParty": false,
+
+    "diagnostics.groupSeverity": {
+        "ambiguity": "Error",
+        "await": "Error",
+        "codestyle": "Error",
+        "conventions": "Error",
+        "duplicate": "Error",
+        "global": "Error",
+        "luadoc": "Error",
+        "redefined": "Error",
+        "strict": "Error",
+        "strong": "Error",
+        "type-check": "Error",
+        "unbalanced": "Error"
+    },
+    "diagnostics.disable": [
+        "unused-function"
+    ]
+}
