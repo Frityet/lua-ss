@@ -13,17 +13,18 @@
 -- You should have received a copy of the GNU Affero General Public License
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+local utilities = require("utilities")
 
-
----@class Page
----@field title string
----@field on_load? fun()
----@field on_draw fun()
----@field on_next? fun(): boolean
-
----@type Page[]
-return {
-    require("pages.title-page"),
-    require("pages.about-me"),
-    require("pages.intro"),
+---@type Page
+---@diagnostic disable-next-line: missing-fields
+local export = {
+    title = "The Lua Programming Language, Part 1",
 }
+
+function export.on_draw()
+    local mid_x, mid_y = utilities.screen_centre()
+    utilities.draw_image("assets/lua.png", mid_x, mid_y, 0.25)
+    utilities.print_centred("Workshop by Amrit Bhogal", mid_y + 500, 72)
+end
+
+return export

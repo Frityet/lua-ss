@@ -1,6 +1,7 @@
 {
     "workspace.library": [
-        "${addons}/love2d/module/library"
+        "${addons}/love2d/module/library",
+        "${addons}/love-nuklear/module/library"
     ],
     "runtime.version": "LuaJIT",
     "runtime.special": {
@@ -24,5 +25,9 @@
     },
     "diagnostics.disable": [
         "unused-function"
+    ],
+    "workspace.ignoreDir": [
+        ".vscode",
+        "love-nuklear"
     ]
 }
