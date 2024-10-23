@@ -23,7 +23,6 @@ local export = {
 }
 local states = coroutine.create(function ()
     function export.on_draw()
-        local mid_x, mid_y = utilities.screen_centre()
         utilities.print_centred("Who am I?", nil, 64)
     end
     coroutine.yield()
@@ -47,8 +46,6 @@ local states = coroutine.create(function ()
         end)
     end
 end)
-
---first state
 coroutine.resume(states)
 
 function export.on_next()

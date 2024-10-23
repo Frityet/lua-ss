@@ -25,5 +25,6 @@
 return {
     require("pages.title-page"),
     require("pages.about-me"),
+    require("pages.projects"),
     require("pages.intro"),
 }

@@ -1,63 +1,99 @@
--- Copyright (C) 2024 frityet
--- 
--- This program is free software: you can redistribute it and/or modify
--- it under the terms of the GNU Affero General Public License as
--- published by the Free Software Foundation, either version 3 of the
--- License, or (at your option) any later version.
--- 
--- This program is distributed in the hope that it will be useful,
--- but WITHOUT ANY WARRANTY; without even the implied warranty of
--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU Affero General Public License for more details.
--- 
--- You should have received a copy of the GNU Affero General Public License
--- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+local extension = jit.os == "Windows" and "dll" or jit.os == "OSX" and "dylib" or "so"
+package.cpath = string.format("%s;./cimgui/native/?.%s", package.cpath, extension)
 
-
-
-local pages = require("pages")
-
-local fonts = {
-    header = love.graphics.newFont(32),
-    body = love.graphics.newFont(16),
-}
-love.graphics.setFont(fonts.body)
-
-local current_index = 1
+local imgui = require("cimgui")
 
 function love.load()
-    love.window.setTitle("Lua Workshop")
-    love.window.setMode(0, 0, {fullscreen = true})
+    imgui.love.Init()
+    love.window.setMode(800, 600, { resizable = true })
 end
 
 function love.draw()
-    local pg = pages[current_index]
-    love.graphics.setBackgroundColor(1, 1, 1)
-
-    love.graphics.setColor(0, 0, 0)
-    love.graphics.setFont(fonts.header)
-    love.graphics.print(pg.title, 10, 10)
-    love.graphics.setFont(fonts.body)
-    pg.on_draw()
+    if imgui.Begin("Test window") then
+        imgui.Text("Hello, world!")
+    end imgui.End()
+    
+    -- code to render imgui
+    imgui.Render()
+    imgui.love.RenderDrawLists()
 end
 
----@param key love.KeyConstant
-function love.keypressed(key)
-    if key == "right" then
-        print("Next page")
-        local pg = pages[current_index]
+function love.update(dt)
+    imgui.love.Update(dt)
+    imgui.NewFrame()
+end
 
-        if not pg.on_next or pg.on_next() then
-            current_index = current_index + 1
-            if current_index > #pages then
-                current_index = 1
-            end
-        end
-    elseif key == "left" then
-        print("Previous page")
-        current_index = current_index - 1
-        if current_index < 1 then
-            current_index = #pages
-        end
+function love.mousemoved(x, y, ...)
+    imgui.love.MouseMoved(x, y)
+    if not imgui.love.GetWantCaptureMouse() then
+        -- your code here
     end
+end
+
+function love.mousepressed(x, y, button, ...)
+    imgui.love.MousePressed(button)
+    if not imgui.love.GetWantCaptureMouse() then
+        -- your code here 
+    end
+end
+
+function love.mousereleased(x, y, button, ...)
+    imgui.love.MouseReleased(button)
+    if not imgui.love.GetWantCaptureMouse() then
+        -- your code here 
+    end
+end
+
+function love.wheelmoved(x, y)
+    imgui.love.WheelMoved(x, y)
+    if not imgui.love.GetWantCaptureMouse() then
+        -- your code here 
+    end
+end
+
+function love.keypressed(key, ...)
+    imgui.love.KeyPressed(key)
+    if not imgui.love.GetWantCaptureKeyboard() then
+        -- your code here 
+    end
+end
+
+function love.keyreleased(key, ...)
+    imgui.love.KeyReleased(key)
+    if not imgui.love.GetWantCaptureKeyboard() then
+        -- your code here 
+    end
+end
+
+function love.textinput(t)
+    imgui.love.TextInput(t)
+    if imgui.love.GetWantCaptureKeyboard() then
+        -- your code here 
+    end
+end
+
+function love.quit()
+    return imgui.love.Shutdown()
+end
+
+-- for gamepad support also add the following:
+
+function love.joystickadded(joystick)
+    imgui.love.JoystickAdded(joystick)
+    -- your code here 
+end
+
+function love.joystickremoved(joystick)
+    imgui.love.JoystickRemoved()
+    -- your code here 
+end
+
+function love.gamepadpressed(joystick, button)
+    imgui.love.GamepadPressed(button)
+    -- your code here 
+end
+
+function love.gamepadreleased(joystick, button)
+    imgui.love.GamepadReleased(button)
+    -- your code here 
 end

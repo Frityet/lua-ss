@@ -13,7 +13,7 @@
 -- You should have received a copy of the GNU Affero General Public License
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
+local imgui = require("cimgui")
 
 ---@type Page
 ---@diagnostic disable-next-line: missing-fields
@@ -22,7 +22,9 @@ local export = {
 }
 
 function export.on_draw()
-
+    if imgui.Begin "Test window" then
+        imgui.Text "Hello, world!"
+    end imgui.End()
 end
 
 return export

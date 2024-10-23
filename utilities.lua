@@ -25,6 +25,16 @@ end
 ---@type { [integer] : love.Font }
 local font_cache = {}
 
+---@param text string | number
+function export.load_font(text)
+    local font = font_cache[text]
+    if not font then
+        font = love.graphics.newFont(text)
+        font_cache[text] = font
+    end
+    return font
+end
+
 ---@param text string
 ---@param y integer?
 ---@param font_size integer?
@@ -32,12 +42,7 @@ function export.print_centred(text, y, font_size)
     local width, height = love.graphics.getDimensions()
     local font = love.graphics.getFont()
     if font_size then
-        font = font_cache[font_size]
-        if not font then
-            font = love.graphics.newFont(font_size)
-            font_cache[font_size] = font
-        end
-        love.graphics.setFont(font)
+        font = export.load_font(font_size)
     end
     local text_width = font:getWidth(text)
     local text_height = font:getHeight()
@@ -60,15 +65,21 @@ end
 local img_cache = {}
 
 ---@param path string
----@param x integer
----@param y integer
----@param scale number
-function export.draw_image(path, x, y, scale)
+function export.load_image(path)
     local image = img_cache[path]
     if not image then
         image = love.graphics.newImage(path)
         img_cache[path] = image
     end
+    return image
+end
+
+---@param path string
+---@param x integer
+---@param y integer
+---@param scale number
+function export.draw_image(path, x, y, scale)
+    local image = export.load_image(path)
     local width, height = image:getDimensions()
     return export.coloured(1, 1, 1, function()
         return love.graphics.draw(image, x, y, 0, scale, scale, width / 2, height / 2)
