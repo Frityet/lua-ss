@@ -1,8 +1,7 @@
 {
     "workspace.library": [
-        "${addons}/love2d/module/library",
     ],
-    "runtime.version": "LuaJIT",
+    "runtime.version": "Lua 5.4",
     "runtime.special": {
         "love.filesystem.load": "loadfile"
     },
@@ -27,7 +26,6 @@
     ],
     "workspace.ignoreDir": [
         ".vscode",
-        "love-nuklear"
     ],
     "runtime.pathStrict": true
 }
