@@ -114,6 +114,43 @@ function SlideUsagesOfLua() {
     );
 }
 
+function SlideProjectsIMade() {
+    let projects = [
+        {
+            name: "LuaOS",
+            description: "Operating system based around Lua, with each process being a lua state"
+        },
+        {
+            name: "teal-compiler",
+            description: "A compiler for the Teal language, a typed dialect of Lua"
+        },
+        {
+            name: "LuaXMLGenerator",
+            description: "DSL for generating XML in Lua"
+        },
+        {
+            name: "LuaWebsiteTemplate",
+            description: "React-like fully (or partially) client side using pure lua"
+        }
+    ]
+
+    return (
+        <Slide>
+            <h2 className="text-4xl font-bold text-center">Projects I've Made</h2>
+            <div className="grid grid-cols-2 gap-8 mt-8">
+                {projects.map((project, index) => (
+                    <div key={index} className="flex items-center bg-white shadow-md p-4 rounded-lg">
+                        <div>
+                            <h3 className="text-2xl font-semibold">{project.name}</h3>
+                            <p className="mt-2 text-lg text-gray-600">{project.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </Slide>
+    );
+}
+
 function SlideSyntaxBasics() {
     return (
         <Slide>
@@ -1100,6 +1137,7 @@ const slides = [
     SlideAboutMe,
     SlideWhatIsLua,
     SlideUsagesOfLua,
+    SlideProjectsIMade,
     SlideSyntaxBasics,
     SlideVariablesAndTypes,
     SlideStrings,
