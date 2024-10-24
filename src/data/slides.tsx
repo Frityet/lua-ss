@@ -2,8 +2,8 @@ import React from 'react';
 import Slide from '../components/Slide';
 import CodeExecutor from '../components/CodeExecutor';
 
-import luaLogo from "../public/lua.png"
-import me from "../public/me.jpeg"
+// import luaLogo from "../public/lua.png"
+// import me from "../public/me.jpeg"
 
 function SlideIntroduction() {
     return (
@@ -11,9 +11,9 @@ function SlideIntroduction() {
             <h1 className="text-5xl font-bold text-center">Introduction to Lua</h1>
             <p className="mt-4 text-2xl text-center">An overview of the Lua programming language.</p>
             <p className="mt-4 text-xl text-center text-gray-500">Fast, embeddable, and versatile scripting language.</p>
-            <div className="flex items-center justify-center mt-8">
+            {/* <div className="flex items-center justify-center mt-8">
                 <img src={luaLogo} alt="Lua Logo" className="w-32 h-32 object-contain" />
-            </div>
+            </div> */}
         </Slide>
     );
 }
