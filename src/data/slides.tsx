@@ -1,9 +1,8 @@
-import React from 'react';
 import Slide from '../components/Slide';
 import CodeExecutor from '../components/CodeExecutor';
 
-// import luaLogo from "../public/lua.png"
-// import me from "../public/me.jpeg"
+import luaLogo from "./lua.png"
+import me from "./me.jpeg"
 
 function SlideIntroduction() {
     return (
@@ -11,12 +10,26 @@ function SlideIntroduction() {
             <h1 className="text-5xl font-bold text-center">Introduction to Lua</h1>
             <p className="mt-4 text-2xl text-center">An overview of the Lua programming language.</p>
             <p className="mt-4 text-xl text-center text-gray-500">Fast, embeddable, and versatile scripting language.</p>
-            {/* <div className="flex items-center justify-center mt-8">
-                <img src={luaLogo} alt="Lua Logo" className="w-32 h-32 object-contain" />
-            </div> */}
+            <div className="flex items-center justify-center mt-8">
+                <img src={luaLogo} alt="Lua Logo" className="w-64 h-64 object-contain" />
+            </div>
         </Slide>
     );
 }
+
+function SlideAboutMe() {
+    return (
+        <Slide>
+            <h2 className="text-4xl font-bold">About Me</h2>
+            <div className="mt-4 flex items-center">
+                <img src={me} alt="Me" className="w-96 h-96 object-cover" />
+            </div>
+            <p className="mt-4 text-2xl">Hi, I'm Amrit! I'm a software engineer and Lua enthusiast.</p>
+            <p className="mt-4 text-2xl">I enjoy learning and teaching programming languages.</p>
+        </Slide>
+    );
+}
+
 function SlideWhatIsLua() {
     return (
         <Slide>
@@ -293,12 +306,7 @@ local function print_elements(tbl)
 end
     
 -- Lua table as array
-print_element { 10, 20, 30 }
-
--- Output:
--- 10
--- 20
--- 30
+print_elements { 10, 20, 30 }
 `}
             </CodeExecutor>
         </Slide>
@@ -498,9 +506,9 @@ local mt = {
 }
 setmetatable(t, mt)
 
--- Now t uses mt for addition
-local sum = t + 10  -- Works because __add is defined
-print(sum)  -- prints 10
+-- Now uses mt for addition
+local sum = t + 10
+print(sum)
 `}
             </CodeExecutor>
         </Slide>
@@ -526,8 +534,8 @@ local mt = {
 setmetatable(t1, mt)
 setmetatable(t2, mt)
 
-local result = t1 + t2  -- adds t1.value and t2.value
-print(result)  -- prints 15
+local result = t1 + t2
+print(result)
 `}
             </CodeExecutor>
         </Slide>
@@ -1089,6 +1097,7 @@ function SlideConclusion() {
 
 const slides = [
     SlideIntroduction,
+    SlideAboutMe,
     SlideWhatIsLua,
     SlideUsagesOfLua,
     SlideSyntaxBasics,

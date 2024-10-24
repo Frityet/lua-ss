@@ -1,4 +1,3 @@
-import React from 'react';
 import SlideManager from './components/SlideManager';
 
 function App()

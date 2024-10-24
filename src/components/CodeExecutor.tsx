@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import { getLuaState } from '../common';
-import type { LuaTable } from "../luajs";
 
 export function Terminal({ children }: { children: string })
 {

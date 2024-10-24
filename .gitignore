@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 public/me.jpeg
+
+*.tsbuildinfo

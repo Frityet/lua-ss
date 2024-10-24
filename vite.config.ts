@@ -1,11 +1,6 @@
-import { normalizePath, defineConfig } from 'vite'
-import path from 'path'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import wasm from "vite-plugin-wasm";
-import { viteStaticCopy } from 'vite-plugin-static-copy'
-
-function cwd(other: TemplateStringsArray)
-{ return normalizePath(path.resolve(__dirname, ...other.raw)) }
 
 // https://vitejs.dev/config/
 export default defineConfig({
